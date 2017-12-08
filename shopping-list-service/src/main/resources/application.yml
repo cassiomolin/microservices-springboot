@@ -17,5 +17,3 @@ eureka:
   client:
     healthcheck:
       enabled: true
-    lease:
-      duration: 5

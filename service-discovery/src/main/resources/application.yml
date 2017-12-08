@@ -10,7 +10,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
   server:
-    enableSelfPreservation: false
+    renewalPercentThreshold: 0.49
 
 logging:
   level:

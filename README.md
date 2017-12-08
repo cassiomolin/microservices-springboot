@@ -59,6 +59,6 @@ To build and run this application, follow these steps:
 
 ### Running extra instances (optional)
 
-If you want to, you can run extra instances of `product-service` and `shopping-list-service` applications, just use a different port: `java -DPORT=8003 -jar product-service-1.0-SNAPSHOT.jar`. New instances will automatically register themselves in the service-discovery.
+If you want to, you can run extra instances of `product-service` and `shopping-list-service` applications, just use a different port: `java -DPORT=8003 -jar product-service-1.0.jar`. New instances will automatically register themselves in the service-discovery.
 
 Requests coming from the `api-gateway` service will balance the requests between the instances.
