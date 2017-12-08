@@ -17,8 +17,8 @@ This application consists of four different services:
 
 - **`product-service`:** Provides API for managing products. By default runs on port `8001`.
 - **`shopping-list-service`:** Provides API for managing shopping lists. By default runs on port `8002`.
-- **`api-gateway`:** Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
 - **`service-discovery`:** Eureka service that discovers and registers other service instances. By default runs on port `8761`.
+- **`api-gateway`:** Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
 
 ## Building and running this application
 
@@ -56,3 +56,9 @@ To build and run this application, follow these steps:
 
 1. Open a command line window or terminal.
 1. Start the `api-gateway` application: `java -jar api-gateway-1.0.jar`
+
+### Running extra instances (optional)
+
+If you want to, you can run extra instances of `product-service` and `shopping-list-service` applications, just use a different port: `java -DPORT=8003 -jar product-service-1.0-SNAPSHOT.jar`. New instances will automatically register themselves in the service-discovery.
+
+Requests coming from the `api-gateway` service will balance the requests between the instances.
