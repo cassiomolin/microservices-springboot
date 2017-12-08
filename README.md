@@ -15,10 +15,10 @@ Sample microservices application for managing products and shopping lists using:
 
 This application consists of four different services:
 
-- **product-service:** Provides API for managing products. By default runs on port `8001`.
-- **shopping-list-service:** Provides API for managing shopping lists. By default runs on port `8002`.
-- **api-gateway:** Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
-- **service-discovery:** Eureka service that discovers and registers other service instances. By default runs on port `8761`.
+- **`product-service`:** Provides API for managing products. By default runs on port `8001`.
+- **`shopping-list-service`:** Provides API for managing shopping lists. By default runs on port `8002`.
+- **`api-gateway`:** Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
+- **`service-discovery`:** Eureka service that discovers and registers other service instances. By default runs on port `8761`.
 
 ## Building and running this application
 
@@ -55,4 +55,4 @@ To build and run this application, follow these steps:
 ### Running the `api-gateway` application
 
 1. Open a command line window or terminal.
-1. Start the `api-gateway` application: `java -jar product-service-1.0.jar`
+1. Start the `api-gateway` application: `java -jar api-gateway-1.0.jar`
