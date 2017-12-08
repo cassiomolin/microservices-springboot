@@ -17,5 +17,42 @@ This application consists of four different services:
 
 - **product-service:** Provides API for managing products. By default runs on port `8001`.
 - **shopping-list-service:** Provides API for managing shopping lists. By default runs on port `8002`.
-- **api-gateway:** Sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
-- **service-discovery:** Discovers and registers other service instances. By default runs on port `8761`.
+- **api-gateway:** Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
+- **service-discovery:** Eureka service that discovers and registers other service instances. By default runs on port `8761`.
+
+## Building and running this application
+
+First of all, ensure that you have a MongoDB instance up and running. By default, the `product-service` and `shopping-list-service` will attempt to connect to a database running on port `27017`. The `product` and `shopping-list` databases will be created by the application.
+
+To build and run this application, follow these steps:
+
+1. Open a command line window or terminal.
+1. Navigate to the root directory of the project, where the `pom.xml` resides.
+1. Compile the project: `mvn clean compile`.
+1. Package the application: `mvn package`.
+1. Change into the `target` directory of the `dist` module: `cd dist/target`
+1. You should see a folder with the following or a similar name: `microservices-1.0`. Change into this folder: `cd microservices-1.0`
+1. Start the services as indicated below:
+
+### Running the `service-discovery` application
+
+1. Open a command line window or terminal.
+1. Start the `service-discovery` application: `java -jar service-discovery-1.0.jar`
+1. A Netflix Eureka console will be available at `http://localhost:8761`.
+
+### Running the `product-service` application
+
+1. Open a command line window or terminal.
+1. Start the `product-service` application: `java -jar product-service-1.0.jar`
+1. This service will start on the port `8001` and it will automatically register itself in the service-discovery. Check the Eureka console.
+
+### Running the `shopping-list-service` application
+
+1. Open a command line window or terminal.
+1. Start the `shopping-list-service` application: `java -jar shopping-list-service-1.0.jar`
+1. This service will start on the port `8002` and it will automatically register itself in the service-discovery. Check the Eureka console.
+
+### Running the `api-gateway` application
+
+1. Open a command line window or terminal.
+1. Start the `api-gateway` application: `java -jar product-service-1.0.jar`
