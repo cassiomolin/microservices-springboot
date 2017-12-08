@@ -1,5 +1,8 @@
 # Sample microservices application with Spring Boot, Zuul, Ribbon and Eureka
 
+[![Build Status](https://travis-ci.org/cassiomolin/microservices-springboot.svg?branch=master)](https://travis-ci.org/cassiomolin/microservices-springboot)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/cassiomolin/microservices-springboot/master/LICENSE.txt)
+
 Sample microservices application for managing products and shopping lists using:
 
 - **Spring Boot:** Framework for creating standalone Java applications.
