@@ -1,0 +1,26 @@
+server:
+  port: ${PORT:8765}
+
+spring:
+  application:
+    name: api-gateway
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    product-service:
+      path: /api/products/**
+      serviceId: product-service
+      stripPrefix: false
+    shopping-list-service:
+      path: /api/shopping-lists/**
+      serviceId: shopping-list-service
+      stripPrefix: false
+
+eureka:
+  client:
+    registerWithEureka: false
+
+management:
+  security:
+    enabled: false
