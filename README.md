@@ -19,6 +19,14 @@ This application consists of four different services:
 - **Service discovery:** Netflix Eureka service that discovers and registers other service instances. By default runs on port `8761`.
 - **API gateway:** Netflix Zuul API gateway that sits on the top of the product and shopping list services, providing a gateway for those services. By default runs on port `8765`.
 
+
+See the diagram below:
+
+<!-- Hack to center the image in GitHub -->
+<p align="center">
+  <img src="/architecture-diagram.png" alt="Architecture diagram" width="50%"/>
+</p>
+
 ## Building and running this application
 
 First of all, ensure that you have a MongoDB instance up and running. By default, the `product-service` and `shopping-list-service` will attempt to connect to a database running on port `27017`. The `product` and `shopping-list` databases will be created by the application.
