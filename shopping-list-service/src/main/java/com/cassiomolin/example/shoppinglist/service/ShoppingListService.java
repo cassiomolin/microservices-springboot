@@ -5,7 +5,6 @@ import com.cassiomolin.example.shoppinglist.model.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +14,12 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShoppingListService {
 
-//    @Autowired
-//    private DiscoveryClient discoveryClient;
-
     @Autowired
     private LoadBalancerClient loadBalancer;
-
 
     @Autowired
     private ShoppingListRepository shoppingListRepository;
