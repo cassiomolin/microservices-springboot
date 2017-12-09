@@ -24,7 +24,7 @@ See the diagram below:
 
 <!-- Hack to center the image in GitHub -->
 <p align="center">
-  <img src="/architecture-diagram.png" alt="Architecture diagram" width="50%"/>
+  <img src="architecture-diagram.png" alt="Architecture diagram" width="50%"/>
 </p>
 
 ## Building and running this application
@@ -69,3 +69,62 @@ To build and run this application, follow these steps:
 If you want to, you can run extra instances of `product-service` and `shopping-list-service` applications, just use a different port: `java -DPORT=8003 -jar product-service-1.0.jar`. New instances will automatically register themselves in the service-discovery.
 
 Requests coming from the `api-gateway` service will balance the requests between the instances.
+
+## REST API overview
+
+The application provides a REST API for managing tasks. See the [curl][] scripts below with the supported operations:
+
+### Create a product
+
+```bash
+curl -X POST \
+  'http://localhost:8765/api/products' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Garlic"
+}'
+```
+
+### Get all products
+
+```bash
+curl -X GET \
+  'http://localhost:8765/api/products' \
+  -H 'Accept: application/json'
+```
+
+### Get a product by id
+
+```bash
+curl -X GET \
+  'http://localhost:8765/api/products/<product-id>' \
+  -H 'Accept: application/json'
+```
+
+### Create a shopping list
+
+```bash
+curl -X POST \
+  'http://localhost:8765/api/shopping-lists' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Birthday party",
+  "items": [
+    {
+      "id": "<product-id>"
+    },
+    {
+      "id": "<product-id>"
+    },
+    ...
+  ]
+}'
+```
+
+### Get all shopping lists
+
+```bash
+curl -X GET \
+  'http://localhost:8765/api/shopping-lists' \
+  -H 'Accept: application/json'
+```
