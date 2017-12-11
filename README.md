@@ -39,9 +39,9 @@ Before running the application, ensure that you have a MongoDB instance running 
 
 ### RabbitMQ
 
-RabbitMQ is used as message broker. When a product is deleted, a message is produced by the product service. The shopping list service receives the message and removes the deleted product from the shopping lists.
+RabbitMQ is used as message broker, for communication between the services. When a product is deleted, a message is produced by the product service. The shopping list service consumes the message and removes the deleted product from the shopping lists.
 
-Before running the application, ensure that RabbitMQ is running on `localhost` port `5672` (default port).
+Before running the application, ensure that a RabbitMQ instance is running on `localhost` port `5672` (default port).
 
 ## Building and running this application
 
