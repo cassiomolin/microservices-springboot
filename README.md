@@ -33,7 +33,7 @@ This application depends on external services. Ensure that these services are up
 
 ### MongoDB
 
-Shopping and product services use MongoDB for persistence, using different databases for each service.
+Shopping and product services use MongoDB for persistence, but different databases are used for each service.
 
 Before running the application, ensure that you have a MongoDB instance running on `localhost` port `27017` (default port). The `product` and `shopping-list` databases will be created by the application.
 
