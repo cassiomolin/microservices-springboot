@@ -51,32 +51,32 @@ To build and run this application, follow these steps:
 1. Navigate to the root directory of the project, where the `pom.xml` resides.
 1. Compile the project: `mvn clean compile`.
 1. Package the application: `mvn package`.
-1. Change into the `target` directory of the `dist` module: `cd dist/target`
-1. You should see a folder with the following or a similar name: `microservices-1.0`. Change into this folder: `cd microservices-1.0`
+1. Change into the `target` directory of the `dist` module: `cd dist/target`.
+1. You should see a folder with the following or a similar name: `microservices-1.0`. Change into this folder: `cd microservices-1.0`.
 1. Start the services as indicated below (the order doesn't matter).
 
 ### Running the service discovery application
 
 1. Open a command line window or terminal.
-1. Start the `service-discovery` application: `java -jar service-discovery-1.0.jar`
+1. Start the `service-discovery` application: `java -jar service-discovery-1.0.jar`.
 1. A Netflix Eureka console will be available at `http://localhost:8761`.
 
 ### Running the product service application
 
 1. Open a command line window or terminal.
-1. Start the `product-service` application: `java -jar product-service-1.0.jar`
+1. Start the `product-service` application: `java -jar product-service-1.0.jar`.
 1. This service will start on the port `8001` and it will automatically register itself in the service discovery. Check the Eureka console.
 
 ### Running the shopping list service application
 
 1. Open a command line window or terminal.
-1. Start the `shopping-list-service` application: `java -jar shopping-list-service-1.0.jar`
+1. Start the `shopping-list-service` application: `java -jar shopping-list-service-1.0.jar`.
 1. This service will start on the port `8002` and it will automatically register itself in the service discovery. Check the Eureka console.
 
 ### Running the API gateway application
 
 1. Open a command line window or terminal.
-1. Start the `api-gateway` application: `java -jar api-gateway-1.0.jar`
+1. Start the `api-gateway` application: `java -jar api-gateway-1.0.jar`.
 
 ### Running extra instances (optional)
 
