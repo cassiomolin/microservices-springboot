@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @Component
 @Path("shopping-lists")
 public class ShoppingListResource {
+
+    @Context
+    private UriInfo uriInfo;
 
     @Autowired
     private ShoppingListService shoppingListService;
@@ -21,7 +26,7 @@ public class ShoppingListResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createShoppingList(ShoppingList shoppingList) {
         String id = shoppingListService.createShoppingList(shoppingList);
-        return Response.ok(id).build();
+        return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
 
     @GET

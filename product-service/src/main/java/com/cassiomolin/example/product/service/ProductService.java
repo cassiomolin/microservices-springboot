@@ -20,7 +20,6 @@ import java.util.Optional;
  * @author cassiomolin
  */
 @Service
-@EnableBinding(Source.class)
 public class ProductService {
 
     @Autowired
@@ -41,10 +40,14 @@ public class ProductService {
 
     public Optional<Product> findProduct(String id) {
         Product one = productRepository.findOne(id);
-        if (one != null) {
-            messageChannel.send(MessageBuilder.withPayload(one).build());
-        }
         return Optional.ofNullable(one);
     }
 
+    public void deleteProduct(String id) {
+        Product product = productRepository.findOne(id);
+        if (product != null) {
+            productRepository.delete(id);
+            messageChannel.send(MessageBuilder.withPayload(product).build());
+        }
+    }
 }

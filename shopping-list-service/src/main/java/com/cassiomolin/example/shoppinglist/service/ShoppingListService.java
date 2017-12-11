@@ -15,6 +15,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingListService {
@@ -45,19 +46,35 @@ public class ShoppingListService {
     }
 
     public List<ShoppingList> findShoppingLists() {
+
         List<ShoppingList> shoppingLists = shoppingListRepository.findAll();
         shoppingLists.forEach(shoppingList -> {
             shoppingList.getItems().forEach(product -> {
-                Product productDetails = getProductDetails(product.getId());
-                product.setName(productDetails.getName());
+
+                Optional<Product> productDetails = getProductDetails(product.getId());
+
+                String name;
+                if (productDetails.isPresent()) {
+                    name = productDetails.get().getName();
+                } else {
+                    name = null;
+                }
+
+                product.setName(name);
             });
         });
+
         return shoppingLists;
     }
 
-    private Product getProductDetails(String productId) {
+    private Optional<Product> getProductDetails(String productId) {
         URI productServiceUri = getProductServiceUri();
-        return client.target(productServiceUri).path("api").path("products").path(productId).request().get(Product.class);
+        Response response = client.target(productServiceUri).path("api").path("products").path(productId).request().get();
+        if (Response.Status.Family.SUCCESSFUL == response.getStatusInfo().getFamily()) {
+            return Optional.ofNullable(response.readEntity(Product.class));
+        } else {
+            return Optional.empty();
+        }
     }
 
     private boolean checkIfProductExists(String productId) {
@@ -77,7 +94,7 @@ public class ShoppingListService {
     }
 
     @StreamListener(ProductInput.PRODUCT_INPUT)
-    public void receiveMessage(Product product) {
-        System.out.println(product.getId() + " / " + product.getName());
+    public void handleDeletedProduct(Product product) {
+        shoppingListRepository.deleteProductsById(product.getId());
     }
 }
