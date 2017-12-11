@@ -16,5 +16,6 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
         register(ShoppingListResource.class);
+        register(ProductNotFoundExceptionMapper.class);
     }
 }

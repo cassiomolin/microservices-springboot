@@ -35,11 +35,12 @@ public class ProductService {
         return Optional.ofNullable(one);
     }
 
-    public void deleteProduct(String id) {
-        Product product = productRepository.findOne(id);
-        if (product != null) {
+    public Optional<Product> deleteProduct(String id) {
+        Optional<Product> optionalProduct = Optional.ofNullable(productRepository.findOne(id));
+        if (optionalProduct.isPresent()) {
             productRepository.delete(id);
-            messageChannel.send(MessageBuilder.withPayload(product).build());
+            messageChannel.send(MessageBuilder.withPayload(optionalProduct.get()).build());
         }
+        return optionalProduct;
     }
 }

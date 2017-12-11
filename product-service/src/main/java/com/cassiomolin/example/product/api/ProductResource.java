@@ -49,7 +49,11 @@ public class ProductResource {
     @DELETE
     @Path("{id}")
     public Response deleteProduct(@PathParam("id") String id) {
-        productService.deleteProduct(id);
-        return Response.noContent().build();
+        Optional<Product> optionalProduct = productService.deleteProduct(id);
+        if (optionalProduct.isPresent()) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 }
