@@ -24,7 +24,7 @@ See the diagram below:
 
 <!-- Hack to center the image in GitHub -->
 <p align="center">
-  <img src="architecture-diagram.png" alt="Architecture diagram" width="50%"/>
+  <img src="architecture-diagram.png" alt="Architecture diagram" width="65%"/>
 </p>
 
 ## External services
