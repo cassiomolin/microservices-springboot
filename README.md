@@ -78,17 +78,6 @@ Requests coming from the `api-gateway` service will balance the requests between
 
 The application provides a REST API for managing tasks. See the [curl][] scripts below with the supported operations:
 
-### Create a product
-
-```bash
-curl -X POST \
-  'http://localhost:8765/api/products' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Garlic"
-}'
-```
-
 ### Get all products
 
 ```bash
@@ -97,12 +86,30 @@ curl -X GET \
   -H 'Accept: application/json'
 ```
 
+### Create a product
+
+```bash
+curl -X POST \
+  'http://localhost:8765/api/products' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Avocado"
+}'
+```
+
 ### Get a product by id
 
 ```bash
 curl -X GET \
   'http://localhost:8765/api/products/<product-id>' \
   -H 'Accept: application/json'
+```
+
+### Delete a product by id
+
+```bash
+curl -X DELETE \
+  'http://localhost:8765/api/products/<product-id>'
 ```
 
 ### Create a shopping list
