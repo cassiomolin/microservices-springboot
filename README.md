@@ -28,17 +28,10 @@ See the diagram below:
 
 ## External services
 
-This application depends on external services. Ensure that these services are up and running attempting to run the application.
+This application depends on external services. Ensure that these services are up and running when attempting to run the application.
 
-### MongoDB
-
-Shopping and product services use MongoDB for persistence.
-
-Before running the Ensure that you have a MongoDB instance up and running on `localhost` port `27017` (default port). The `product` and `shopping-list` databases will be created by the application.
-
-### RabbitMQ
-
-RabbitMQ is used as message broker. Ensure that RabbitMQ is running on `localhost` port `5672` (default port).
+- **MongoDB:** Shopping and product services use MongoDB for persistence. Ensure that you have a MongoDB instance running on `localhost` port `27017` (default port). The `product` and `shopping-list` databases will be created by the application.
+- **RabbitMQ:** RabbitMQ is used as message broker. Ensure that RabbitMQ is running on `localhost` port `5672` (default port).
 
 ## Building and running this application
 
