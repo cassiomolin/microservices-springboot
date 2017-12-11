@@ -1,4 +1,4 @@
-# Sample microservices application with Spring Boot, Zuul, Eureka and MongoDB
+# Sample microservices application with Spring Boot, Zuul, Eureka, MongoDB and RabbitMQ
 
 [![Build Status](https://travis-ci.org/cassiomolin/microservices-springboot.svg?branch=master)](https://travis-ci.org/cassiomolin/microservices-springboot)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/cassiomolin/microservices-springboot/master/LICENSE.txt)
@@ -10,6 +10,7 @@ Sample microservices application for managing products and shopping lists using:
 - **Jackson:** JSON parser for Java.
 - **Netflix Zuul:** API gateway.
 - **Netflix Eureka:** Service discovery.
+- **RabbitMQ:** Message broker.
 - **MongoDB:** NoSQL database based on documents.
 
 This application consists of four different services:
@@ -30,8 +31,17 @@ See the diagram below:
 
 This application depends on external services. Ensure that these services are up and running when attempting to run the application.
 
-- **MongoDB:** Shopping and product services use MongoDB for persistence. Ensure that you have a MongoDB instance running on `localhost` port `27017` (default port). The `product` and `shopping-list` databases will be created by the application.
-- **RabbitMQ:** RabbitMQ is used as message broker. Ensure that RabbitMQ is running on `localhost` port `5672` (default port).
+### MongoDB
+
+Shopping and product services use MongoDB for persistence, using different databases for each service.
+
+Before running the application, ensure that you have a MongoDB instance running on `localhost` port `27017` (default port). The `product` and `shopping-list` databases will be created by the application.
+
+### RabbitMQ
+
+RabbitMQ is used as message broker. When a product is deleted, a message is produced by the product service. The shopping list service receives the message and removes the deleted product from the shopping lists.
+
+Before running the application, ensure that RabbitMQ is running on `localhost` port `5672` (default port).
 
 ## Building and running this application
 
