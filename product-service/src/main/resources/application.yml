@@ -9,6 +9,18 @@ spring:
       host: localhost
       port: 27017
       database: product
+  cloud:
+    stream:
+      bindings:
+        productOutput:
+          destination: productInput
+        default:
+          contentType: application/json
+  rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: guest
+      password: guest
 
 eureka:
   instance:
@@ -17,3 +29,4 @@ eureka:
   client:
     healthcheck:
       enabled: true
+

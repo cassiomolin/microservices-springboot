@@ -6,6 +6,7 @@ import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -73,5 +74,10 @@ public class ShoppingListService {
         }
 
         return serviceInstance.getUri();
+    }
+
+    @StreamListener(ProductInput.PRODUCT_INPUT)
+    public void receiveMessage(String message) {
+        System.out.println(message);
     }
 }

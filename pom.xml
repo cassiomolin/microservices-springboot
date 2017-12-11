@@ -26,7 +26,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- Spring Boot and Spring Cloud versions must be compatible -->
-        <!-- See more: http://projects.spring.io/spring-cloud/ -->
+        <!-- See more: http://projects.spring.io/spring-cloud/#release-trains -->
         <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
 
