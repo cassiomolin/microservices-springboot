@@ -1,11 +1,10 @@
 package com.cassiomolin.example.product;
 
-import com.cassiomolin.example.product.service.ProductOutput;
+import com.cassiomolin.example.product.service.ProductDeletedOutput;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-
 
 /**
  * Spring Boot application entry point.
@@ -14,7 +13,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableBinding({ProductOutput.class})
+@EnableBinding({ProductDeletedOutput.class})
 public class Application {
 
     public static void main(String[] args) {

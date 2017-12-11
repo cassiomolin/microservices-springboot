@@ -93,7 +93,7 @@ public class ShoppingListService {
         return serviceInstance.getUri();
     }
 
-    @StreamListener(ProductInput.PRODUCT_INPUT)
+    @StreamListener(ProductDeletedInput.PRODUCT_DELETED_INPUT)
     public void handleDeletedProduct(Product product) {
         shoppingListRepository.deleteProductsById(product.getId());
     }

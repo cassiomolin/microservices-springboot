@@ -12,8 +12,8 @@ spring:
   cloud:
     stream:
       bindings:
-        productOutput:
-          destination: productInput
+        productDeletedOutput:
+          destination: productDeletedInput
           contentType: application/json
   rabbitmq:
       host: localhost
