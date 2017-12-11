@@ -77,7 +77,7 @@ public class ShoppingListService {
     }
 
     @StreamListener(ProductInput.PRODUCT_INPUT)
-    public void receiveMessage(String message) {
-        System.out.println(message);
+    public void receiveMessage(Product product) {
+        System.out.println(product.getId() + " / " + product.getName());
     }
 }

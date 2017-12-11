@@ -42,7 +42,7 @@ public class ProductService {
     public Optional<Product> findProduct(String id) {
         Product one = productRepository.findOne(id);
         if (one != null) {
-            messageChannel.send(MessageBuilder.withPayload(one.getName()).build());
+            messageChannel.send(MessageBuilder.withPayload(one).build());
         }
         return Optional.ofNullable(one);
     }

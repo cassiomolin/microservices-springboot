@@ -14,7 +14,6 @@ spring:
       bindings:
         productOutput:
           destination: productInput
-        default:
           contentType: application/json
   rabbitmq:
       host: localhost
