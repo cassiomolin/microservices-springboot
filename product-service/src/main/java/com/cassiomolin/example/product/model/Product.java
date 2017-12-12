@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Product model.
+ * Model class that represents a product.
  *
  * @author cassiomolin
  */

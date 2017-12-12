@@ -6,6 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Model class that represents a shopping list.
+ *
+ * @author cassiomolin
+ */
 @Document
 public class ShoppingList {
 

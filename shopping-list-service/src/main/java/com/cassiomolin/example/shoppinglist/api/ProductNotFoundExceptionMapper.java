@@ -6,6 +6,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * Exception mapper for {@link ProductNotFoundException}.
+ *
+ * @author cassiomolin
+ */
 @Provider
 public class ProductNotFoundExceptionMapper implements ExceptionMapper<ProductNotFoundException> {
 

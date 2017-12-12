@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.ApplicationPath;
 
 /**
- * Jersey configuration class.
+ * Jersey configuration.
  *
  * @author cassiomolin
  */

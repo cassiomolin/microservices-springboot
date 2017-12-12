@@ -13,6 +13,11 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.Optional;
 
+/**
+ * REST API client for the product service.
+ *
+ * @author cassiomolin
+ */
 @Component
 public class ProductApiClient {
 

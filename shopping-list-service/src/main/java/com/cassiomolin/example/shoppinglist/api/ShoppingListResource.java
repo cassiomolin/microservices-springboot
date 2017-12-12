@@ -12,6 +12,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+/**
+ * Shopping list REST resource.
+ *
+ * @author cassiomolin
+ */
 @Component
 @Path("shopping-lists")
 public class ShoppingListResource {
