@@ -10,6 +10,11 @@ import javax.ws.rs.core.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Product REST resource.
+ *
+ * @author cassiomolin
+ */
 @Component
 @Path("products")
 public class ProductResource {

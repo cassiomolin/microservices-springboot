@@ -3,6 +3,11 @@ package com.cassiomolin.example.product.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Product model.
+ *
+ * @author cassiomolin
+ */
 @Document
 public class Product {
 

@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service that provides operations for products.
+ *
+ * @author cassiomolin
+ */
 @Service
 public class ProductService {
 
