@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.cassiomolin</groupId>
         <artifactId>microservices</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>api-gateway</artifactId>
