@@ -122,6 +122,14 @@ curl -X DELETE \
   'http://localhost:8765/api/products/<product-id>'
 ```
 
+### Get all shopping lists
+
+```bash
+curl -X GET \
+  'http://localhost:8765/api/shopping-lists' \
+  -H 'Accept: application/json'
+```
+
 ### Create a shopping list
 
 ```bash
@@ -140,12 +148,4 @@ curl -X POST \
     ...
   ]
 }'
-```
-
-### Get all shopping lists
-
-```bash
-curl -X GET \
-  'http://localhost:8765/api/shopping-lists' \
-  -H 'Accept: application/json'
 ```
