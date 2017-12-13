@@ -14,7 +14,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@RibbonClient("test")
+@RibbonClient("shoppingList")
 @EnableBinding({ProductDeletedInput.class})
 public class Application {
 
