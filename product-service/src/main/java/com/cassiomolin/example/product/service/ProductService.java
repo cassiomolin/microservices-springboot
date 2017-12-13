@@ -8,8 +8,8 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.NotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service that provides operations for products.
@@ -26,26 +26,30 @@ public class ProductService {
     @Qualifier(ProductDeletedOutput.PRODUCT_DELETED_OUTPUT)
     private MessageChannel messageChannel;
 
+    public List<Product> getProducts() {
+        return productRepository.findAll();
+    }
+
     public String createProduct(Product product) {
         product = productRepository.save(product);
         return product.getId();
     }
 
-    public List<Product> findProducts() {
-        return productRepository.findAll();
-    }
-
-    public Optional<Product> findProduct(String id) {
-        Product one = productRepository.findOne(id);
-        return Optional.ofNullable(one);
-    }
-
-    public Optional<Product> deleteProduct(String id) {
-        Optional<Product> optionalProduct = Optional.ofNullable(productRepository.findOne(id));
-        if (optionalProduct.isPresent()) {
-            productRepository.delete(id);
-            messageChannel.send(MessageBuilder.withPayload(optionalProduct.get()).build());
+    public Product getProduct(String id) {
+        Product product = productRepository.findOne(id);
+        if (product == null) {
+            throw new NotFoundException();
         }
-        return optionalProduct;
+        return product;
+    }
+
+    public void deleteProduct(String id) {
+        Product product = productRepository.findOne(id);
+        if (product == null) {
+            throw new NotFoundException();
+        } else {
+            productRepository.delete(id);
+            messageChannel.send(MessageBuilder.withPayload(product).build());
+        }
     }
 }

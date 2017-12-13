@@ -27,6 +27,13 @@ public class ShoppingListResource {
     @Autowired
     private ShoppingListService shoppingListService;
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getShoppingLists() {
+        List<ShoppingList> shoppingLists = shoppingListService.getShoppingLists();
+        return Response.ok(shoppingLists).build();
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createShoppingList(ShoppingList shoppingList) {
@@ -35,9 +42,17 @@ public class ShoppingListResource {
     }
 
     @GET
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getShoppingLists() {
-        List<ShoppingList> shoppingLists = shoppingListService.findShoppingLists();
-        return Response.ok(shoppingLists).build();
+    public Response getShoppingList(@PathParam("id") String id) {
+        ShoppingList shoppingList = shoppingListService.getShoppingList(id);
+        return Response.ok(shoppingList).build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteShoppingList(@PathParam("id") String id) {
+        shoppingListService.deleteShoppingList(id);
+        return Response.noContent().build();
     }
 }

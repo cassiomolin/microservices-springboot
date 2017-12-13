@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Product REST resource.
@@ -25,40 +24,32 @@ public class ProductResource {
     @Autowired
     private ProductService productService;
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createShoppingList(Product product) {
-        String id = productService.createProduct(product);
-        return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
-    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@Context HttpHeaders headers) {
-        List<Product> products = productService.findProducts();
+        List<Product> products = productService.getProducts();
         return Response.ok(products).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createProduct(Product product) {
+        String id = productService.createProduct(product);
+        return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProduct(@PathParam("id") String id) {
-        Optional<Product> optionalProduct = productService.findProduct(id);
-        if (optionalProduct.isPresent()) {
-            return Response.ok(optionalProduct.get()).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        Product product = productService.getProduct(id);
+        return Response.ok(product).build();
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteProduct(@PathParam("id") String id) {
-        Optional<Product> optionalProduct = productService.deleteProduct(id);
-        if (optionalProduct.isPresent()) {
-            return Response.noContent().build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        productService.deleteProduct(id);
+        return Response.noContent().build();
     }
 }
