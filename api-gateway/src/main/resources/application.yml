@@ -20,7 +20,3 @@ zuul:
 eureka:
   client:
     registerWithEureka: false
-
-management:
-  security:
-    enabled: false

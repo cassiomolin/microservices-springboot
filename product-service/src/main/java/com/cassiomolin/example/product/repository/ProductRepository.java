@@ -4,7 +4,7 @@ import com.cassiomolin.example.product.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * MongoDB repository for {@link Product}.
+ * MongoDB repository for products.
  *
  * @author cassiomolin
  */

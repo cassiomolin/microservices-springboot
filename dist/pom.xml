@@ -41,6 +41,7 @@
     <build>
         <finalName>microservices-${project.version}</finalName>
         <plugins>
+
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.1.0</version>

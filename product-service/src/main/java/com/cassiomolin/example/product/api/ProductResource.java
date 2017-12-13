@@ -10,7 +10,7 @@ import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
- * Product REST resource.
+ * Component that exposes REST API endpoints for products.
  *
  * @author cassiomolin
  */

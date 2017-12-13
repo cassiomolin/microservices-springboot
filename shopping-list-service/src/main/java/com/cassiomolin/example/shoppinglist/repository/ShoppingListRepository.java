@@ -4,7 +4,7 @@ import com.cassiomolin.example.shoppinglist.model.ShoppingList;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * MongoDB repository for {@link ShoppingList}.
+ * MongoDB repository for shopping lists.
  *
  * @author cassiomolin
  */

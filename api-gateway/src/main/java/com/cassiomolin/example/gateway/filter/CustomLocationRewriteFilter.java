@@ -5,7 +5,7 @@ import org.springframework.cloud.netflix.zuul.filters.post.LocationRewriteFilter
 import org.springframework.http.HttpStatus;
 
 /**
- * Filter to re-write the {@code Location} header to the Zuul's URL.
+ * Filter to re-write the {@code Location} header to point to the API gateway.
  *
  * @author cassiomolin
  */

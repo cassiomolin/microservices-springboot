@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 /**
- * Implementation for the additional methods for the shopping list repository.
+ * Implementation of the additional methods for the shopping list repository.
  *
  * @author cassiomolin
  */

@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
- * Shopping list REST resource.
+ * Component that exposes REST API endpoints for shopping lists.
  *
  * @author cassiomolin
  */
