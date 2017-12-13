@@ -111,7 +111,7 @@ curl -X POST \
 
 ```bash
 curl -X GET \
-  'http://localhost:8765/api/products/<product-id>' \
+  'http://localhost:8765/api/products/{product-id}' \
   -H 'Accept: application/json'
 ```
 
@@ -119,7 +119,7 @@ curl -X GET \
 
 ```bash
 curl -X DELETE \
-  'http://localhost:8765/api/products/<product-id>'
+  'http://localhost:8765/api/products/{product-id}'
 ```
 
 ### Get all shopping lists
@@ -140,12 +140,27 @@ curl -X POST \
   "name": "Birthday party",
   "items": [
     {
-      "id": "<product-id>"
+      "id": "{product-id}"
     },
     {
-      "id": "<product-id>"
+      "id": "{product-id}"
     },
     ...
   ]
 }'
+```
+
+### Get a shopping list by id
+
+```bash
+curl -X GET \
+  'http://localhost:8765/api/shopping-list/{shopping-list-id}' \
+  -H 'Accept: application/json'
+```
+
+### Delete a shopping list by id
+
+```bash
+curl -X DELETE \
+  'http://localhost:8765/api/shopping-lists/{shopping-list-id}'
 ```
