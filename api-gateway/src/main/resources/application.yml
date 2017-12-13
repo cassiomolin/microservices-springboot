@@ -20,3 +20,14 @@ zuul:
 eureka:
   client:
     registerWithEureka: false
+
+# Useful for debugging purposes
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ReadTimeout: 100000
+  ConnectTimeout: 100000

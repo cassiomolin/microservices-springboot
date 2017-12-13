@@ -4,6 +4,7 @@ import com.cassiomolin.example.shoppinglist.model.Product;
 import com.cassiomolin.example.shoppinglist.model.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,7 @@ public class ShoppingListService {
         });
     }
 
+    @CacheEvict(cacheNames="secondary", key="#product.id")
     @StreamListener(ProductDeletedInput.PRODUCT_DELETED_INPUT)
     public void handleDeletedProduct(Product product) {
         shoppingListRepository.deleteProductsById(product.getId());

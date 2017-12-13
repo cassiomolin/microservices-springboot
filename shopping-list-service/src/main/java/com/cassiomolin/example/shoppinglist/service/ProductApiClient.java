@@ -2,6 +2,7 @@ package com.cassiomolin.example.shoppinglist.service;
 
 import com.cassiomolin.example.shoppinglist.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,7 @@ public class ProductApiClient {
         this.client = ClientBuilder.newClient();
     }
 
+    @Cacheable(cacheNames="products", key="#productId")
     public Optional<Product> getProduct(String productId) {
         URI productServiceUri = getProductServiceUri();
         Response response = client.target(productServiceUri).path("api").path("products").path(productId).request().get();
