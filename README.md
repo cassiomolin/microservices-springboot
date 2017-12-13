@@ -164,3 +164,10 @@ curl -X GET \
 curl -X DELETE \
   'http://localhost:8765/api/shopping-lists/{shopping-list-id}'
 ```
+
+## Targeting the REST API with Postman
+
+Alternatively to [curl][], you can use [Postman][] to target the REST API. Check the Postman [collection](microservices-springboot.postman_collection.json) and the [environment variables](microservices-springboot.postman_environment.json) as well.
+
+[Postman]: https://www.getpostman.com/
+[curl]: https://curl.haxx.se/
