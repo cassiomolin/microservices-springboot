@@ -89,10 +89,10 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
-        <!-- Commons -->
+        <!-- API Commons -->
         <dependency>
             <groupId>${parent.groupId}</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>api-commons</artifactId>
             <version>${parent.version}</version>
         </dependency>
 
