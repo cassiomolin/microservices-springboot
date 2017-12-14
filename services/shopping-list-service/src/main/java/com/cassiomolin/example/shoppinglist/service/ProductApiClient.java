@@ -1,6 +1,6 @@
 package com.cassiomolin.example.shoppinglist.service;
 
-import com.cassiomolin.example.shoppinglist.model.Product;
+import com.cassiomolin.example.shoppinglist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.client.ServiceInstance;

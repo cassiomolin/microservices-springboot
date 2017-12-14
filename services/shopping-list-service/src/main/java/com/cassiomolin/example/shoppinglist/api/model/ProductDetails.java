@@ -1,23 +1,21 @@
-package com.cassiomolin.example.product.api.model;
+package com.cassiomolin.example.shoppinglist.api.model;
 
 import com.cassiomolin.example.commons.api.validation.groups.Create;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 /**
- * API model for a product.
+ * API model that represents an item of a shopping list.
  *
  * @author cassiomolin
  */
 public class ProductDetails {
 
-    @Null(groups = Create.class)
+    @NotNull
     private String id;
 
-    @NotNull
-    @NotBlank
+    @Null(groups = Create.class)
     private String name;
 
     public String getId() {

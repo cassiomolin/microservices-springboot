@@ -1,5 +1,6 @@
 package com.cassiomolin.example.product.api;
 
+import com.cassiomolin.example.commons.api.validation.groups.Create;
 import com.cassiomolin.example.product.api.model.ProductDetails;
 import com.cassiomolin.example.product.domain.Product;
 import com.cassiomolin.example.product.service.ProductService;
@@ -7,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.executable.ValidateOnExecution;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -37,7 +42,7 @@ public class ProductResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createProduct(@Valid ProductDetails productDetails) {
+    public Response createProduct(@Valid @ConvertGroup(from = Default.class, to = Create.class) @NotNull ProductDetails productDetails) {
         Product product = toProduct(productDetails);
         String id = productService.createProduct(product);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();

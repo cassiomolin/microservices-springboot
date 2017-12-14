@@ -1,4 +1,4 @@
-package com.cassiomolin.example.shoppinglist.model;
+package com.cassiomolin.example.shoppinglist.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Model class that represents a shopping list.
+ * Domain class that represents a shopping list.
  *
  * @author cassiomolin
  */

@@ -1,7 +1,7 @@
 package com.cassiomolin.example.commons.api.model;
 
 /**
- * API model to indicate an error.
+ * API domain to indicate an error.
  *
  * @author cassiomolin
  */

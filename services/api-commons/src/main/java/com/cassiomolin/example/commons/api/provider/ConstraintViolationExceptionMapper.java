@@ -398,8 +398,9 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
             return validationErrors;
         }
 
-        public void setValidationErrors(List<ValidationError> validationErrors) {
+        public ApiValidationError setValidationErrors(List<ValidationError> validationErrors) {
             this.validationErrors = validationErrors;
+            return this;
         }
     }
 
@@ -417,32 +418,31 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
         private String message;
 
-        public ValidationError() {
-
-        }
-
         public String getType() {
             return type;
         }
 
-        public void setType(String type) {
+        public ValidationError setType(String type) {
             this.type = type;
+            return this;
         }
 
         public String getName() {
             return name;
         }
 
-        public void setName(String name) {
+        public ValidationError setName(String name) {
             this.name = name;
+            return this;
         }
 
         public String getMessage() {
             return message;
         }
 
-        public void setMessage(String message) {
+        public ValidationError setMessage(String message) {
             this.message = message;
+            return this;
         }
     }
 }

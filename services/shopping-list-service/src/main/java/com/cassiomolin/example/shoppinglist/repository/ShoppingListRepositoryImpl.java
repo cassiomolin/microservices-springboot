@@ -1,6 +1,6 @@
 package com.cassiomolin.example.shoppinglist.repository;
 
-import com.cassiomolin.example.shoppinglist.model.ShoppingList;
+import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.mongodb.BasicDBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;

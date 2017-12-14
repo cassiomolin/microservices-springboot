@@ -1,6 +1,6 @@
 package com.cassiomolin.example.shoppinglist.repository;
 
-import com.cassiomolin.example.shoppinglist.model.ShoppingList;
+import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

@@ -1,8 +1,8 @@
 package com.cassiomolin.example.shoppinglist.service;
 
 import com.cassiomolin.example.commons.api.exception.UnprocessableEntityException;
-import com.cassiomolin.example.shoppinglist.model.Product;
-import com.cassiomolin.example.shoppinglist.model.ShoppingList;
+import com.cassiomolin.example.shoppinglist.domain.Product;
+import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
