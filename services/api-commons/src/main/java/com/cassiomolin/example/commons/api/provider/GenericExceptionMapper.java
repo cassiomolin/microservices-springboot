@@ -1,4 +1,7 @@
-package com.cassiomolin.example.commons.api;
+package com.cassiomolin.example.commons.api.provider;
+
+import com.cassiomolin.example.commons.api.exception.UnprocessableEntityException;
+import com.cassiomolin.example.commons.api.model.ApiError;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;

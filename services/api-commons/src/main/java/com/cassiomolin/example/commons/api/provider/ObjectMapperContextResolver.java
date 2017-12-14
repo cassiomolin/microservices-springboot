@@ -1,4 +1,4 @@
-package com.cassiomolin.example.commons.api;
+package com.cassiomolin.example.commons.api.provider;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

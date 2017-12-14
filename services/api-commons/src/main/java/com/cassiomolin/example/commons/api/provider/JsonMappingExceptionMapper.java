@@ -1,6 +1,7 @@
-package com.cassiomolin.example.commons.api;
+package com.cassiomolin.example.commons.api.provider;
 
-import com.fasterxml.jackson.core.JsonParseException;
+import com.cassiomolin.example.commons.api.model.ApiError;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -11,13 +12,13 @@ import javax.ws.rs.ext.Provider;
 import java.time.Instant;
 
 @Provider
-public class JsonParseExceptionMapper implements ExceptionMapper<JsonParseException> {
+public class JsonMappingExceptionMapper implements ExceptionMapper<JsonMappingException> {
 
     @Context
     private UriInfo uriInfo;
 
     @Override
-    public Response toResponse(JsonParseException exception) {
+    public Response toResponse(JsonMappingException exception) {
 
         ApiError error = new ApiError();
         error.setTimestamp(Instant.now().toEpochMilli());

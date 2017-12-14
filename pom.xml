@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cassiomolin</groupId>
+    <groupId>com.cassiomolin.example</groupId>
     <artifactId>microservices</artifactId>
-    <packaging>pom</packaging>
     <version>1.0</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>dist</module>

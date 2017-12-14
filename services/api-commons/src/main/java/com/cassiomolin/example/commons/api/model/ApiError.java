@@ -1,6 +1,6 @@
-package com.cassiomolin.example.commons.api;
+package com.cassiomolin.example.commons.api.model;
 
-class ApiError {
+public class ApiError {
 
     private Long timestamp;
     private Integer status;

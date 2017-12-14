@@ -1,4 +1,4 @@
-package com.cassiomolin.example.commons.api;
+package com.cassiomolin.example.commons.api.exception;
 
 import javax.ws.rs.ClientErrorException;
 

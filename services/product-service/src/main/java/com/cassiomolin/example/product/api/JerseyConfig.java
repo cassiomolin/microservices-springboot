@@ -1,9 +1,9 @@
 package com.cassiomolin.example.product.api;
 
-import com.cassiomolin.example.commons.api.GenericExceptionMapper;
-import com.cassiomolin.example.commons.api.JsonMappingExceptionMapper;
-import com.cassiomolin.example.commons.api.JsonParseExceptionMapper;
-import com.cassiomolin.example.commons.api.ObjectMapperContextResolver;
+import com.cassiomolin.example.commons.api.provider.GenericExceptionMapper;
+import com.cassiomolin.example.commons.api.provider.JsonMappingExceptionMapper;
+import com.cassiomolin.example.commons.api.provider.JsonParseExceptionMapper;
+import com.cassiomolin.example.commons.api.provider.ObjectMapperContextResolver;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
