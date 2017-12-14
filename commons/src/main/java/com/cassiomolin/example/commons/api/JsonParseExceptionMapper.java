@@ -1,8 +1,6 @@
-package com.cassiomolin.example.shoppinglist.api.exception.mapper;
+package com.cassiomolin.example.commons.api;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;

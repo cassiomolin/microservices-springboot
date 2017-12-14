@@ -1,7 +1,6 @@
-package com.cassiomolin.example.shoppinglist.api.exception;
+package com.cassiomolin.example.commons.api;
 
 import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.core.Response;
 
 /**
  * Exception to indicate that an entity cannot be processed.

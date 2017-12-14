@@ -1,284 +1,284 @@
 {
-	"info": {
-		"name": "microservices-springboot",
-		"_postman_id": "8857b6dc-07c1-4da4-ccaa-2ed9edfa6e7c",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Product",
-			"description": "",
-			"item": [
-				{
-					"name": "Get all products",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/products",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"products"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Create a product",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code === 201) {\r",
-									"    var locationHeader = postman.getResponseHeader(\"Location\");\r",
-									"    var id = locationHeader.substring(locationHeader.lastIndexOf(\"/\") + 1);\r",
-									"    postman.setEnvironmentVariable(\"product.id\", id);\r",
-									"} else {\r",
-									"    postman.clearEnvironmentVariable(\"product.id\");\r",
-									"}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Avocado\"\n}"
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/products",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"products"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get a product by id",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/products/{{product.id}}",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"products",
-								"{{product.id}}"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a product by id",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/products/{{product.id}}",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"products",
-								"{{product.id}}"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Shopping list",
-			"description": "",
-			"item": [
-				{
-					"name": "Get all shopping lists",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/shopping-lists",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"shopping-lists"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Create a shopping list",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code === 201) {\r",
-									"    var locationHeader = postman.getResponseHeader(\"Location\");\r",
-									"    var id = locationHeader.substring(locationHeader.lastIndexOf(\"/\") + 1);\r",
-									"    postman.setEnvironmentVariable(\"shoppingList.id\", id);\r",
-									"} else {\r",
-									"    postman.clearEnvironmentVariable(\"shoppingList.id\");\r",
-									"}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"My shopping list\",\n  \"items\": [\n    {\n      \"id\": \"{{product.id}}\"\n    }\n  ]\n}"
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/shopping-lists",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"shopping-lists"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get a shopping list by id",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/shopping-lists/{{shoppingList.id}}",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"shopping-lists",
-								"{{shoppingList.id}}"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a shopping list by id",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{api.baseUrl}}/api/shopping-lists/{{shoppingList.id}}",
-							"host": [
-								"{{api.baseUrl}}"
-							],
-							"path": [
-								"api",
-								"shopping-lists",
-								"{{shoppingList.id}}"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "name": "microservices-springboot",
+    "_postman_id": "8857b6dc-07c1-4da4-ccaa-2ed9edfa6e7c",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Product",
+      "description": "",
+      "item": [
+        {
+          "name": "Get all products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/products",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Create a product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 201) {\r",
+                  "    var locationHeader = postman.getResponseHeader(\"Location\");\r",
+                  "    var id = locationHeader.substring(locationHeader.lastIndexOf(\"/\") + 1);\r",
+                  "    postman.setEnvironmentVariable(\"product.id\", id);\r",
+                  "} else {\r",
+                  "    postman.clearEnvironmentVariable(\"product.id\");\r",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Avocado\"\n}"
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/products",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Get a product by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/products/{{product.id}}",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "{{product.id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a product by id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/products/{{product.id}}",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "{{product.id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shopping list",
+      "description": "",
+      "item": [
+        {
+          "name": "Get all shopping lists",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/shopping-lists",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shopping-lists"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Create a shopping list",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 201) {\r",
+                  "    var locationHeader = postman.getResponseHeader(\"Location\");\r",
+                  "    var id = locationHeader.substring(locationHeader.lastIndexOf(\"/\") + 1);\r",
+                  "    postman.setEnvironmentVariable(\"shoppingList.id\", id);\r",
+                  "} else {\r",
+                  "    postman.clearEnvironmentVariable(\"shoppingList.id\");\r",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My shopping list\",\n  \"items\": [\n    {\n      \"id\": \"{{product.id}}\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/shopping-lists",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shopping-lists"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Get a shopping list by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/shopping-lists/{{shoppingList.id}}",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shopping-lists",
+                "{{shoppingList.id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a shopping list by id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{api.baseUrl}}/api/shopping-lists/{{shoppingList.id}}",
+              "host": [
+                "{{api.baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shopping-lists",
+                "{{shoppingList.id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

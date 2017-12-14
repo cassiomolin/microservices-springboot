@@ -32,7 +32,7 @@ public class ProductApiClient {
         this.client = ClientBuilder.newClient();
     }
 
-    @Cacheable(cacheNames="products", key="#productId")
+    @Cacheable(cacheNames = "products", key = "#productId")
     public Optional<Product> getProduct(String productId) {
         URI productServiceUri = getProductServiceUri();
         Response response = client.target(productServiceUri).path("api").path("products").path(productId).request().get();

@@ -1,9 +1,9 @@
 package com.cassiomolin.example.shoppinglist.api;
 
-import com.cassiomolin.example.shoppinglist.api.exception.mapper.GenericExceptionMapper;
-import com.cassiomolin.example.shoppinglist.api.exception.mapper.JsonMappingExceptionMapper;
-import com.cassiomolin.example.shoppinglist.api.exception.mapper.JsonParseExceptionMapper;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.cassiomolin.example.commons.api.GenericExceptionMapper;
+import com.cassiomolin.example.commons.api.JsonMappingExceptionMapper;
+import com.cassiomolin.example.commons.api.JsonParseExceptionMapper;
+import com.cassiomolin.example.commons.api.ObjectMapperContextResolver;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +19,8 @@ import javax.ws.rs.ApplicationPath;
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
-
         register(ShoppingListResource.class);
-
         register(ObjectMapperContextResolver.class);
-
         register(GenericExceptionMapper.class);
         register(JsonMappingExceptionMapper.class, 1);
         register(JsonParseExceptionMapper.class, 1);

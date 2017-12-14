@@ -16,6 +16,7 @@
         <module>shopping-list-service</module>
         <module>service-discovery</module>
         <module>dist</module>
+        <module>commons</module>
     </modules>
 
     <properties>

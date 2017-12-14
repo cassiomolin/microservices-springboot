@@ -85,6 +85,13 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
+        <!-- Commons -->
+        <dependency>
+            <groupId>${parent.groupId}</groupId>
+            <artifactId>commons</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,6 +1,4 @@
-package com.cassiomolin.example.shoppinglist.api.exception.mapper;
-
-import com.cassiomolin.example.shoppinglist.api.exception.UnprocessableEntityException;
+package com.cassiomolin.example.commons.api;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;

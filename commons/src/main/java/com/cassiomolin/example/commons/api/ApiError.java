@@ -1,4 +1,4 @@
-package com.cassiomolin.example.shoppinglist.api.exception.mapper;
+package com.cassiomolin.example.commons.api;
 
 class ApiError {
 

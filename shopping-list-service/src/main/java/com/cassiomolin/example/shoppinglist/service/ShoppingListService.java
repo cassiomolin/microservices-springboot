@@ -1,6 +1,6 @@
 package com.cassiomolin.example.shoppinglist.service;
 
-import com.cassiomolin.example.shoppinglist.api.exception.UnprocessableEntityException;
+import com.cassiomolin.example.commons.api.UnprocessableEntityException;
 import com.cassiomolin.example.shoppinglist.model.Product;
 import com.cassiomolin.example.shoppinglist.model.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
@@ -69,7 +69,7 @@ public class ShoppingListService {
         });
     }
 
-    @CacheEvict(cacheNames="secondary", key="#product.id")
+    @CacheEvict(cacheNames = "secondary", key = "#product.id")
     @StreamListener(ProductDeletedInput.PRODUCT_DELETED_INPUT)
     public void handleDeletedProduct(Product product) {
         shoppingListRepository.deleteProductsById(product.getId());
