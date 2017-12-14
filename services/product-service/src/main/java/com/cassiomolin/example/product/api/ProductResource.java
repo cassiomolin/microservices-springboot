@@ -1,13 +1,16 @@
 package com.cassiomolin.example.product.api;
 
-import com.cassiomolin.example.product.model.Product;
+import com.cassiomolin.example.product.api.model.ProductDetails;
+import com.cassiomolin.example.product.domain.Product;
 import com.cassiomolin.example.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Component that exposes REST API endpoints for products.
@@ -28,12 +31,14 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@Context HttpHeaders headers) {
         List<Product> products = productService.getProducts();
-        return Response.ok(products).build();
+        List<ProductDetails> productDetails = products.stream().map(this::toProductDetails).collect(Collectors.toList());
+        return Response.ok(productDetails).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createProduct(Product product) {
+    public Response createProduct(@Valid ProductDetails productDetails) {
+        Product product = toProduct(productDetails);
         String id = productService.createProduct(product);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
@@ -43,7 +48,8 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProduct(@PathParam("id") String id) {
         Product product = productService.getProduct(id);
-        return Response.ok(product).build();
+        ProductDetails productDetails = toProductDetails(product);
+        return Response.ok(productDetails).build();
     }
 
     @DELETE
@@ -51,5 +57,19 @@ public class ProductResource {
     public Response deleteProduct(@PathParam("id") String id) {
         productService.deleteProduct(id);
         return Response.noContent().build();
+    }
+
+    private Product toProduct(ProductDetails productDetails) {
+        Product product = new Product();
+        product.setId(productDetails.getId());
+        product.setName(productDetails.getName());
+        return product;
+    }
+
+    private ProductDetails toProductDetails(Product product) {
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setId(product.getId());
+        productDetails.setName(product.getName());
+        return productDetails;
     }
 }

@@ -1,6 +1,6 @@
 package com.cassiomolin.example.product.service;
 
-import com.cassiomolin.example.product.model.Product;
+import com.cassiomolin.example.product.domain.Product;
 import com.cassiomolin.example.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

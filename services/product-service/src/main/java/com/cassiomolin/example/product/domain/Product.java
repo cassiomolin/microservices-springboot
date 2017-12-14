@@ -1,4 +1,4 @@
-package com.cassiomolin.example.product.model;
+package com.cassiomolin.example.product.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
