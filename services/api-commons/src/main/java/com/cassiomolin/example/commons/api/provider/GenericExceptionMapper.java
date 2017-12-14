@@ -12,6 +12,11 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 import java.time.Instant;
 
+/**
+ * Component that maps an exception to a HTTP response.
+ *
+ * @author cassiomolin
+ */
 @Provider
 public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
 

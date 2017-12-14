@@ -10,6 +10,11 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * Component that customizes the {@link ObjectMapper} instance used by Jackson to process JSON.
+ *
+ * @author cassiomolin
+ */
 @Provider
 public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 

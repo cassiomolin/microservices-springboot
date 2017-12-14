@@ -11,6 +11,11 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 import java.time.Instant;
 
+/**
+ * Component that maps a {@link JsonParseException} to a HTTP response.
+ *
+ * @author cassiomolin
+ */
 @Provider
 public class JsonParseExceptionMapper implements ExceptionMapper<JsonParseException> {
 

@@ -1,5 +1,10 @@
 package com.cassiomolin.example.commons.api.model;
 
+/**
+ * API model to indicate an error.
+ *
+ * @author cassiomolin
+ */
 public class ApiError {
 
     private Long timestamp;
