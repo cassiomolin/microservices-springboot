@@ -24,7 +24,7 @@ See the diagram below:
 
 <!-- Hack to center the image in GitHub -->
 <p align="center">
-  <img src="architecture-diagram.png" alt="Architecture diagram" width="65%"/>
+  <img src="misc/architecture-diagram.png" alt="Architecture diagram" width="65%"/>
 </p>
 
 ## External services
@@ -167,7 +167,7 @@ curl -X DELETE \
 
 ## Targeting the REST API with Postman
 
-Alternatively to [curl][], you can use [Postman][] to target the REST API. Check the Postman [collection](microservices-springboot.postman_collection.json) and the [environment variables](microservices-springboot.postman_environment.json) as well.
+Alternatively to [curl][], you can use [Postman][] to target the REST API. Check the Postman [collection](misc/microservices-springboot.postman_collection.json) and the [environment variables](misc/microservices-springboot.postman_environment.json) as well.
 
 [Postman]: https://www.getpostman.com/
 [curl]: https://curl.haxx.se/
