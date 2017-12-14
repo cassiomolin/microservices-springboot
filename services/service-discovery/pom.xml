@@ -6,8 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>microservices</artifactId>
         <groupId>com.cassiomolin</groupId>
+        <artifactId>services</artifactId>
         <version>1.0</version>
     </parent>
 

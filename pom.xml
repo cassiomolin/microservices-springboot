@@ -11,12 +11,9 @@
     <version>1.0</version>
 
     <modules>
-        <module>api-gateway</module>
-        <module>product-service</module>
-        <module>shopping-list-service</module>
-        <module>service-discovery</module>
         <module>dist</module>
         <module>commons</module>
+        <module>services</module>
     </modules>
 
     <properties>
