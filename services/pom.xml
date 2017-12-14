@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api-commons</module>
         <module>api-gateway</module>
         <module>product-service</module>
         <module>shopping-list-service</module>

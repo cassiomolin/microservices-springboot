@@ -11,7 +11,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>commons</artifactId>
+    <artifactId>api-commons</artifactId>
 
     <dependencyManagement>
         <dependencies>
@@ -35,7 +35,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
         </dependency>
-
 
         <!-- Jackson dependencies -->
         <dependency>
