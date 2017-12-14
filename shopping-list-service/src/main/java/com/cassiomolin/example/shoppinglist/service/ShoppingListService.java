@@ -1,12 +1,12 @@
 package com.cassiomolin.example.shoppinglist.service;
 
+import com.cassiomolin.example.shoppinglist.api.exception.UnprocessableEntityException;
 import com.cassiomolin.example.shoppinglist.model.Product;
 import com.cassiomolin.example.shoppinglist.model.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.NotFoundException;
@@ -36,7 +36,7 @@ public class ShoppingListService {
     public String createShoppingList(ShoppingList shoppingList) {
         shoppingList.getItems().forEach(product -> {
             if (!productApiClient.checkIfProductExists(product.getId())) {
-                throw new ProductNotFoundException(String.format("Product not found with id %s", product.getId()));
+                throw new UnprocessableEntityException(String.format("Product not found with id %s", product.getId()));
             }
         });
         shoppingList = shoppingListRepository.save(shoppingList);
