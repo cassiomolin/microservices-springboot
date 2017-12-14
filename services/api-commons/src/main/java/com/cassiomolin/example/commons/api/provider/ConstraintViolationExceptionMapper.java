@@ -109,7 +109,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
      * @return
      */
     private int determineStatusCode(List<ValidationError> validationErrors) {
-        boolean containsEntityErrors =validationErrors.stream().map(ValidationError::getType)
+        boolean containsEntityErrors = validationErrors.stream().map(ValidationError::getType)
                 .anyMatch(Arrays.asList(REQUEST_ENTITY, REQUEST_ENTITY_PROPERTY)::contains);
         return containsEntityErrors ? 422 : 400;
     }

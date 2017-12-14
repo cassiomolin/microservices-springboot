@@ -1,6 +1,7 @@
 package com.cassiomolin.example.shoppinglist.api;
 
 import com.cassiomolin.example.commons.api.validation.groups.Create;
+import com.cassiomolin.example.shoppinglist.api.model.ProductDetails;
 import com.cassiomolin.example.shoppinglist.api.model.ShoppingListDetails;
 import com.cassiomolin.example.shoppinglist.domain.Product;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
@@ -83,7 +84,7 @@ public class ShoppingListResource {
         shoppingListDetails.setId(shoppingList.getId());
         shoppingListDetails.setName(shoppingList.getName());
         shoppingListDetails.setItems(shoppingList.getItems().stream().map(product -> {
-            ShoppingListDetails.ProductDetails productDetails = new ShoppingListDetails.ProductDetails();
+            ProductDetails productDetails = new ProductDetails();
             productDetails.setId(product.getId());
             productDetails.setName(product.getName());
             return productDetails;
