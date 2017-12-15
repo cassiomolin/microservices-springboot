@@ -36,7 +36,7 @@ public class ShoppingListService {
     public String createShoppingList(ShoppingList shoppingList) {
         shoppingList.getItems().forEach(product -> {
             if (!productApiClient.checkIfProductExists(product.getId())) {
-                throw new UnprocessableEntityException(String.format("Product not found with id %s", product.getId()));
+                throw new UnprocessableEntityException(String.format("Item not found with id %s", product.getId()));
             }
         });
         shoppingList = shoppingListRepository.save(shoppingList);

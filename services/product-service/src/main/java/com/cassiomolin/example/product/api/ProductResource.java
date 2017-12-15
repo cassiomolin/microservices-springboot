@@ -1,7 +1,7 @@
 package com.cassiomolin.example.product.api;
 
-import com.cassiomolin.example.commons.api.validation.groups.Create;
-import com.cassiomolin.example.product.api.model.ProductDetails;
+import com.cassiomolin.example.product.api.model.CreateProductPayload;
+import com.cassiomolin.example.product.api.model.QueryProductResult;
 import com.cassiomolin.example.product.domain.Product;
 import com.cassiomolin.example.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -35,14 +33,14 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@Context HttpHeaders headers) {
         List<Product> products = productService.getProducts();
-        List<ProductDetails> productDetails = products.stream().map(this::toProductDetails).collect(Collectors.toList());
-        return Response.ok(productDetails).build();
+        List<QueryProductResult> queryResults = products.stream().map(this::toQueryProductResult).collect(Collectors.toList());
+        return Response.ok(queryResults).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createProduct(@Valid @ConvertGroup(from = Default.class, to = Create.class) @NotNull ProductDetails productDetails) {
-        Product product = toProduct(productDetails);
+    public Response createProduct(@Valid @NotNull CreateProductPayload productPayload) {
+        Product product = toProduct(productPayload);
         String id = productService.createProduct(product);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
@@ -52,8 +50,8 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProduct(@PathParam("id") String id) {
         Product product = productService.getProduct(id);
-        ProductDetails productDetails = toProductDetails(product);
-        return Response.ok(productDetails).build();
+        QueryProductResult queryResult = toQueryProductResult(product);
+        return Response.ok(queryResult).build();
     }
 
     @DELETE
@@ -63,17 +61,16 @@ public class ProductResource {
         return Response.noContent().build();
     }
 
-    private Product toProduct(ProductDetails productDetails) {
+    private Product toProduct(CreateProductPayload productPayload) {
         Product product = new Product();
-        product.setId(productDetails.getId());
-        product.setName(productDetails.getName());
+        product.setName(productPayload.getName());
         return product;
     }
 
-    private ProductDetails toProductDetails(Product product) {
-        ProductDetails productDetails = new ProductDetails();
-        productDetails.setId(product.getId());
-        productDetails.setName(product.getName());
-        return productDetails;
+    private QueryProductResult toQueryProductResult(Product product) {
+        QueryProductResult queryResult = new QueryProductResult();
+        queryResult.setId(product.getId());
+        queryResult.setName(product.getName());
+        return queryResult;
     }
 }

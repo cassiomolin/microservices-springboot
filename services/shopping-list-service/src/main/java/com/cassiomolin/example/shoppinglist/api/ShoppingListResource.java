@@ -1,8 +1,7 @@
 package com.cassiomolin.example.shoppinglist.api;
 
-import com.cassiomolin.example.commons.api.validation.groups.Create;
-import com.cassiomolin.example.shoppinglist.api.model.ProductDetails;
-import com.cassiomolin.example.shoppinglist.api.model.ShoppingListDetails;
+import com.cassiomolin.example.shoppinglist.api.model.CreateShoppingListPayload;
+import com.cassiomolin.example.shoppinglist.api.model.QueryShoppingListResult;
 import com.cassiomolin.example.shoppinglist.domain.Product;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.service.ShoppingListService;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -40,14 +37,14 @@ public class ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShoppingLists() {
         List<ShoppingList> shoppingLists = shoppingListService.getShoppingLists();
-        List<ShoppingListDetails> shoppingListDetails = shoppingLists.stream().map(this::toShoppingListDetails).collect(Collectors.toList());
-        return Response.ok(shoppingListDetails).build();
+        List<QueryShoppingListResult> queryResults = shoppingLists.stream().map(this::toQueryShoppingListResult).collect(Collectors.toList());
+        return Response.ok(queryResults).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createShoppingList(@Valid @ConvertGroup(from = Default.class, to = Create.class) @NotNull ShoppingListDetails shoppingListDetails) {
-        ShoppingList shoppingList = toShoppingList(shoppingListDetails);
+    public Response createShoppingList(@Valid @NotNull CreateShoppingListPayload shoppingListPayload) {
+        ShoppingList shoppingList = toShoppingList(shoppingListPayload);
         String id = shoppingListService.createShoppingList(shoppingList);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
@@ -57,8 +54,8 @@ public class ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShoppingList(@PathParam("id") String id) {
         ShoppingList shoppingList = shoppingListService.getShoppingList(id);
-        ShoppingListDetails shoppingListDetails = toShoppingListDetails(shoppingList);
-        return Response.ok(shoppingListDetails).build();
+        QueryShoppingListResult queryResult = toQueryShoppingListResult(shoppingList);
+        return Response.ok(queryResult).build();
     }
 
     @DELETE
@@ -68,27 +65,27 @@ public class ShoppingListResource {
         return Response.noContent().build();
     }
 
-    private ShoppingList toShoppingList(ShoppingListDetails shoppingListDetails) {
+    private ShoppingList toShoppingList(CreateShoppingListPayload shoppingListPayload) {
         ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setName(shoppingListDetails.getName());
-        shoppingList.setItems(shoppingListDetails.getItems().stream().map(productDetails -> {
+        shoppingList.setName(shoppingListPayload.getName());
+        shoppingList.setItems(shoppingListPayload.getItems().stream().map(item -> {
             Product product = new Product();
-            product.setId(productDetails.getId());
+            product.setId(item.getId());
             return product;
         }).collect(Collectors.toSet()));
         return shoppingList;
     }
 
-    private ShoppingListDetails toShoppingListDetails(ShoppingList shoppingList) {
-        ShoppingListDetails shoppingListDetails = new ShoppingListDetails();
-        shoppingListDetails.setId(shoppingList.getId());
-        shoppingListDetails.setName(shoppingList.getName());
-        shoppingListDetails.setItems(shoppingList.getItems().stream().map(product -> {
-            ProductDetails productDetails = new ProductDetails();
-            productDetails.setId(product.getId());
-            productDetails.setName(product.getName());
-            return productDetails;
+    private QueryShoppingListResult toQueryShoppingListResult(ShoppingList shoppingList) {
+        QueryShoppingListResult queryResult = new QueryShoppingListResult();
+        queryResult.setId(shoppingList.getId());
+        queryResult.setName(shoppingList.getName());
+        queryResult.setItems(shoppingList.getItems().stream().map(product -> {
+            QueryShoppingListResult.Item item = new QueryShoppingListResult.Item();
+            item.setId(product.getId());
+            item.setName(product.getName());
+            return item;
         }).collect(Collectors.toList()));
-        return shoppingListDetails;
+        return queryResult;
     }
 }
