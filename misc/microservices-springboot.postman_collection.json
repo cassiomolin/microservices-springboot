@@ -113,6 +113,39 @@
 					"response": []
 				},
 				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Chocolate cake\"\n}"
+						},
+						"url": {
+							"raw": "{{api.baseUrl}}/api/products/{{product.id}}",
+							"host": [
+								"{{api.baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{product.id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Delete a product by id",
 					"request": {
 						"method": "DELETE",
