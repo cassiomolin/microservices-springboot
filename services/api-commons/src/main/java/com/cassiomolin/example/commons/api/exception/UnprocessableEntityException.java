@@ -3,7 +3,7 @@ package com.cassiomolin.example.commons.api.exception;
 import javax.ws.rs.ClientErrorException;
 
 /**
- * Exception to indicate that an entity cannot be processed.
+ * Exception to indicate that an entity cannot be processed. Produces a response with the {@code 422} status code (Unprocessable Entity).
  *
  * @author cassiomolin
  */

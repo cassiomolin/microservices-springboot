@@ -16,7 +16,15 @@ import javax.ws.rs.ApplicationPath;
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
+        registerResources();
+        registerProviders();
+    }
+
+    private void registerResources() {
         register(ProductResource.class);
+    }
+
+    private void registerProviders() {
         register(ObjectMapperContextResolver.class);
         register(ConstraintViolationExceptionMapper.class);
         register(GenericExceptionMapper.class);
