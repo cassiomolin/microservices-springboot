@@ -8,6 +8,7 @@ Sample microservices application for managing products and shopping lists using:
 - **Spring Boot:** Framework for creating standalone Java applications.
 - **Jersey:** JAX-RS reference implementation for creating RESTful web services in Java.
 - **Jackson:** JSON parser for Java.
+- **MapStruct:** Framework for mapping objects in Java.
 - **Netflix Zuul:** API gateway.
 - **Netflix Eureka:** Service discovery.
 - **RabbitMQ:** Message broker.

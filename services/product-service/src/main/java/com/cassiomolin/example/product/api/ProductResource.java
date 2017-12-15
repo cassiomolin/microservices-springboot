@@ -1,5 +1,6 @@
 package com.cassiomolin.example.product.api;
 
+import com.cassiomolin.example.product.api.mapper.ProductMapper;
 import com.cassiomolin.example.product.api.model.CreateProductPayload;
 import com.cassiomolin.example.product.api.model.QueryProductResult;
 import com.cassiomolin.example.product.domain.Product;
@@ -27,20 +28,23 @@ public class ProductResource {
     private UriInfo uriInfo;
 
     @Autowired
+    private ProductMapper productMapper;
+
+    @Autowired
     private ProductService productService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@Context HttpHeaders headers) {
         List<Product> products = productService.getProducts();
-        List<QueryProductResult> queryResults = products.stream().map(this::toQueryProductResult).collect(Collectors.toList());
+        List<QueryProductResult> queryResults = products.stream().map(productMapper::toQueryProductResult).collect(Collectors.toList());
         return Response.ok(queryResults).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createProduct(@Valid @NotNull CreateProductPayload productPayload) {
-        Product product = toProduct(productPayload);
+        Product product = productMapper.toProduct(productPayload);
         String id = productService.createProduct(product);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
@@ -50,7 +54,7 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProduct(@PathParam("id") String id) {
         Product product = productService.getProduct(id);
-        QueryProductResult queryResult = toQueryProductResult(product);
+        QueryProductResult queryResult = productMapper.toQueryProductResult(product);
         return Response.ok(queryResult).build();
     }
 
@@ -59,18 +63,5 @@ public class ProductResource {
     public Response deleteProduct(@PathParam("id") String id) {
         productService.deleteProduct(id);
         return Response.noContent().build();
-    }
-
-    private Product toProduct(CreateProductPayload productPayload) {
-        Product product = new Product();
-        product.setName(productPayload.getName());
-        return product;
-    }
-
-    private QueryProductResult toQueryProductResult(Product product) {
-        QueryProductResult queryResult = new QueryProductResult();
-        queryResult.setId(product.getId());
-        queryResult.setName(product.getName());
-        return queryResult;
     }
 }
