@@ -80,6 +80,7 @@ public class ShoppingListResource {
         QueryShoppingListResult queryResult = new QueryShoppingListResult();
         queryResult.setId(shoppingList.getId());
         queryResult.setName(shoppingList.getName());
+        queryResult.setCreatedDate(shoppingList.getCreatedDate());
         queryResult.setItems(shoppingList.getItems().stream().map(product -> {
             QueryShoppingListResult.Item item = new QueryShoppingListResult.Item();
             item.setId(product.getId());

@@ -1,5 +1,6 @@
 package com.cassiomolin.example.shoppinglist.api.model;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class QueryShoppingListResult {
     private String id;
 
     private String name;
+
+    private ZonedDateTime createdDate;
 
     private List<Item> items = new ArrayList<>();
 
@@ -40,6 +43,15 @@ public class QueryShoppingListResult {
 
     public QueryShoppingListResult setItems(List<Item> items) {
         this.items = items;
+        return this;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public QueryShoppingListResult setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 
