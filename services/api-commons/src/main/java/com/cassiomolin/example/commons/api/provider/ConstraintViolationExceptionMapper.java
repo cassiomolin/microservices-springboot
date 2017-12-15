@@ -45,14 +45,14 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
     @Context
     private Providers providers;
 
-    private static final String REQUEST_ENTITY = "requestEntity";
-    private static final String REQUEST_ENTITY_PROPERTY = "requestEntityProperty";
-    private static final String REQUEST_QUERY_PARAMETER = "requestQueryParameter";
-    private static final String REQUEST_PATH_PARAMETER = "requestPathParameter";
-    private static final String REQUEST_HEADER_PARAMETER = "requestHeaderParameter";
-    private static final String REQUEST_COOKIE_PARAMETER = "requestCookieParameter";
-    private static final String REQUEST_FORM_PARAMETER = "requestFormParameter";
-    private static final String REQUEST_MATRIX_PARAMETER = "requestMatrixParameter";
+    private static final String REQUEST_ENTITY = "entity";
+    private static final String REQUEST_ENTITY_PROPERTY = "entity-property";
+    private static final String REQUEST_QUERY_PARAMETER = "query-parameter";
+    private static final String REQUEST_PATH_PARAMETER = "path-parameter";
+    private static final String REQUEST_HEADER_PARAMETER = "header-parameter";
+    private static final String REQUEST_COOKIE_PARAMETER = "cookie-parameter";
+    private static final String REQUEST_FORM_PARAMETER = "form-parameter";
+    private static final String REQUEST_MATRIX_PARAMETER = "matrix-parameter";
 
     @Override
     public Response toResponse(ConstraintViolationException exception) {
@@ -359,10 +359,6 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
         private String name;
 
-        public ParameterDetails() {
-
-        }
-
         public String getType() {
             return type;
         }
@@ -386,13 +382,9 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
      * @author cassiomolin
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private static class ApiValidationError extends ApiError {
+    public static class ApiValidationError extends ApiError {
 
         private List<ValidationError> validationErrors;
-
-        public ApiValidationError() {
-
-        }
 
         public List<ValidationError> getValidationErrors() {
             return validationErrors;

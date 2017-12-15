@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * API model for creating a shopping list.
+ * API model with details of a shopping list query result.
  *
  * @author cassiomolin
  */
