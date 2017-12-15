@@ -1,7 +1,7 @@
 package com.cassiomolin.example.shoppinglist.api;
 
 import com.cassiomolin.example.shoppinglist.api.mapper.ShoppingListMapper;
-import com.cassiomolin.example.shoppinglist.api.model.CreateShoppingListPayload;
+import com.cassiomolin.example.shoppinglist.api.model.CreateOrUpdateShoppingListPayload;
 import com.cassiomolin.example.shoppinglist.api.model.QueryShoppingListResult;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.service.ShoppingListService;
@@ -40,14 +40,14 @@ public class ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShoppingLists() {
         List<ShoppingList> shoppingLists = shoppingListService.getShoppingLists();
-        List<QueryShoppingListResult> queryResults = shoppingLists.stream().map(shoppingListMapper::toQueryShoppingListResult).collect(Collectors.toList());
-        return Response.ok(queryResults).build();
+        List<QueryShoppingListResult> results = shoppingLists.stream().map(shoppingListMapper::toQueryShoppingListResult).collect(Collectors.toList());
+        return Response.ok(results).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createShoppingList(@Valid @NotNull CreateShoppingListPayload shoppingListPayload) {
-        ShoppingList shoppingList = shoppingListMapper.toShoppingList(shoppingListPayload);
+    public Response createShoppingList(@Valid @NotNull CreateOrUpdateShoppingListPayload payload) {
+        ShoppingList shoppingList = shoppingListMapper.toShoppingList(payload);
         String id = shoppingListService.createShoppingList(shoppingList);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
     }
@@ -57,8 +57,18 @@ public class ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getShoppingList(@PathParam("id") String id) {
         ShoppingList shoppingList = shoppingListService.getShoppingList(id);
-        QueryShoppingListResult queryResult = shoppingListMapper.toQueryShoppingListResult(shoppingList);
-        return Response.ok(queryResult).build();
+        QueryShoppingListResult result = shoppingListMapper.toQueryShoppingListResult(shoppingList);
+        return Response.ok(result).build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateShoppingList(@PathParam("id") String id, @Valid @NotNull CreateOrUpdateShoppingListPayload payload) {
+        ShoppingList shoppingList = shoppingListService.getShoppingList(id);
+        shoppingListMapper.updateShoppingList(payload, shoppingList);
+        shoppingListService.updateShoppingList(shoppingList);
+        return Response.noContent().build();
     }
 
     @DELETE

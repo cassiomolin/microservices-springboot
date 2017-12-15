@@ -21,7 +21,7 @@ import java.util.Optional;
  * @author cassiomolin
  */
 @Component
-public class ProductApiClient {
+class ProductApiClient {
 
     private Client client;
 

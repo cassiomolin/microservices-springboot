@@ -155,8 +155,28 @@ curl -X POST \
 
 ```bash
 curl -X GET \
-  'http://localhost:8765/api/shopping-list/{shopping-list-id}' \
+  'http://localhost:8765/api/shopping-lists/{shopping-list-id}' \
   -H 'Accept: application/json'
+```
+
+### Update a shopping list
+
+```bash
+curl -X PUT \
+  'http://localhost:8765/api/shopping-lists/{shopping-list-id}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Birthday party",
+  "items": [
+    {
+      "id": "{product-id}"
+    },
+    {
+      "id": "{product-id}"
+    },
+    ...
+  ]
+}'
 ```
 
 ### Delete a shopping list by id

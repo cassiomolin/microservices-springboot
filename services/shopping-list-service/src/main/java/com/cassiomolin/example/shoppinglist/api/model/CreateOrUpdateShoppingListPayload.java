@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author cassiomolin
  */
-public class CreateShoppingListPayload {
+public class CreateOrUpdateShoppingListPayload {
 
     @NotNull
     @NotBlank
@@ -25,7 +25,7 @@ public class CreateShoppingListPayload {
         return name;
     }
 
-    public CreateShoppingListPayload setName(String name) {
+    public CreateOrUpdateShoppingListPayload setName(String name) {
         this.name = name;
         return this;
     }
@@ -34,7 +34,7 @@ public class CreateShoppingListPayload {
         return items;
     }
 
-    public CreateShoppingListPayload setItems(List<Item> items) {
+    public CreateOrUpdateShoppingListPayload setItems(List<Item> items) {
         this.items = items;
         return this;
     }

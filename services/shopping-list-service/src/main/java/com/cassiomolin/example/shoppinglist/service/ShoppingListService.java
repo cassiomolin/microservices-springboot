@@ -34,13 +34,22 @@ public class ShoppingListService {
     }
 
     public String createShoppingList(ShoppingList shoppingList) {
+        validateItems(shoppingList);
+        shoppingList = shoppingListRepository.save(shoppingList);
+        return shoppingList.getId();
+    }
+
+    public void updateShoppingList(ShoppingList shoppingList) {
+        validateItems(shoppingList);
+        shoppingListRepository.save(shoppingList);
+    }
+
+    private void validateItems(ShoppingList shoppingList) {
         shoppingList.getItems().forEach(product -> {
             if (!productApiClient.checkIfProductExists(product.getId())) {
                 throw new UnprocessableEntityException(String.format("Item not found with id %s", product.getId()));
             }
         });
-        shoppingList = shoppingListRepository.save(shoppingList);
-        return shoppingList.getId();
     }
 
     public ShoppingList getShoppingList(String id) {
