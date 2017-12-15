@@ -24,13 +24,13 @@ import java.util.Optional;
 public class ShoppingListService {
 
     @Autowired
+    private CacheManager cacheManager;
+
+    @Autowired
     private ProductApiClient productApiClient;
 
     @Autowired
     private ShoppingListRepository shoppingListRepository;
-
-    @Autowired
-    private CacheManager cacheManager;
 
     public List<ShoppingList> getShoppingLists() {
         List<ShoppingList> shoppingLists = shoppingListRepository.findAll();
