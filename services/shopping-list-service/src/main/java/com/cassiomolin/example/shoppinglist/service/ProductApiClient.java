@@ -1,5 +1,6 @@
 package com.cassiomolin.example.shoppinglist.service;
 
+import com.cassiomolin.example.shoppinglist.config.CachingConfiguration;
 import com.cassiomolin.example.shoppinglist.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -35,7 +36,7 @@ class ProductApiClient {
         this.client = ClientBuilder.newClient();
     }
 
-    @Cacheable(cacheNames = "products", key = "#productId")
+    @Cacheable(cacheNames = CachingConfiguration.PRODUCTS_CACHE, key = "#productId")
     public Optional<Product> getProduct(String productId) {
         URI productServiceUri = getProductServiceUri();
         Response response = client.target(productServiceUri).path("api").path("products").path(productId).request().get();

@@ -1,10 +1,12 @@
 package com.cassiomolin.example.shoppinglist.service;
 
 import com.cassiomolin.example.commons.api.exception.UnprocessableEntityException;
+import com.cassiomolin.example.shoppinglist.config.CachingConfiguration;
 import com.cassiomolin.example.shoppinglist.domain.Product;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class ShoppingListService {
 
     @Autowired
     private ShoppingListRepository shoppingListRepository;
+
+    @Autowired
+    private CacheManager cacheManager;
 
     public List<ShoppingList> getShoppingLists() {
         List<ShoppingList> shoppingLists = shoppingListRepository.findAll();
@@ -78,15 +83,14 @@ public class ShoppingListService {
         });
     }
 
-    @CacheEvict(cacheNames = "products", key = "#product.id")
+    @CacheEvict(cacheNames = CachingConfiguration.PRODUCTS_CACHE, key = "#product.id")
     @StreamListener(ProductInputChannel.PRODUCT_DELETED_INPUT)
     public void handleDeletedProduct(Product product) {
         shoppingListRepository.deleteProductsById(product.getId());
     }
 
-    @CacheEvict(cacheNames = "products", key = "#product.id")
     @StreamListener(ProductInputChannel.PRODUCT_UPDATED_INPUT)
     public void handleUpdatedProduct(Product product) {
-        // Simply evict entry from the cache
+        cacheManager.getCache(CachingConfiguration.PRODUCTS_CACHE).put(product.getId(), product);
     }
 }
