@@ -8,6 +8,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.ws.rs.ServiceUnavailableException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -22,10 +23,12 @@ import java.util.Optional;
 @Component
 public class ProductApiClient {
 
+    private Client client;
+
     @Autowired
     private LoadBalancerClient loadBalancer;
 
-    private Client client;
+    private static final String PRODUCT_SERVICE = "product-service";
 
     @PostConstruct
     private void init() {
@@ -51,9 +54,9 @@ public class ProductApiClient {
 
     private URI getProductServiceUri() {
 
-        ServiceInstance serviceInstance = loadBalancer.choose("product-service");
+        ServiceInstance serviceInstance = loadBalancer.choose(PRODUCT_SERVICE);
         if (serviceInstance == null) {
-            throw new RuntimeException("Service unavailable");
+            throw new ServiceUnavailableException("Service unavailable");
         }
 
         return serviceInstance.getUri();
