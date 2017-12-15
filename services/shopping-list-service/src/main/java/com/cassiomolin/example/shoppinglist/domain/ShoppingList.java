@@ -1,8 +1,10 @@
 package com.cassiomolin.example.shoppinglist.domain;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +20,9 @@ public class ShoppingList {
     private String id;
 
     private String name;
+
+    @CreatedDate
+    private ZonedDateTime createdDate;
 
     private Set<Product> items = new HashSet<>();
 
@@ -45,6 +50,15 @@ public class ShoppingList {
 
     public ShoppingList setItems(Set<Product> items) {
         this.items = items;
+        return this;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public ShoppingList setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 }
