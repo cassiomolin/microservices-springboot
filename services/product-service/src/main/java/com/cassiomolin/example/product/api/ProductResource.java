@@ -1,7 +1,7 @@
 package com.cassiomolin.example.product.api;
 
 import com.cassiomolin.example.product.api.mapper.ProductMapper;
-import com.cassiomolin.example.product.api.model.CreateProductPayload;
+import com.cassiomolin.example.product.api.model.CreateOrUpdateProductPayload;
 import com.cassiomolin.example.product.api.model.QueryProductResult;
 import com.cassiomolin.example.product.domain.Product;
 import com.cassiomolin.example.product.service.ProductService;
@@ -43,7 +43,7 @@ public class ProductResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createProduct(@Valid @NotNull CreateProductPayload productPayload) {
+    public Response createProduct(@Valid @NotNull CreateOrUpdateProductPayload productPayload) {
         Product product = productMapper.toProduct(productPayload);
         String id = productService.createProduct(product);
         return Response.created(uriInfo.getAbsolutePathBuilder().path(id).build()).build();
@@ -56,6 +56,16 @@ public class ProductResource {
         Product product = productService.getProduct(id);
         QueryProductResult queryResult = productMapper.toQueryProductResult(product);
         return Response.ok(queryResult).build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateProduct(@PathParam("id") String id, @Valid @NotNull CreateOrUpdateProductPayload payload) {
+        Product product = productService.getProduct(id);
+        productMapper.updateProduct(payload, product);
+        productService.updateProduct(product);
+        return Response.noContent().build();
     }
 
     @DELETE

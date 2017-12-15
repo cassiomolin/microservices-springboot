@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author cassiomolin
  */
-public class CreateProductPayload {
+public class CreateOrUpdateProductPayload {
 
     @NotNull
     @NotBlank
@@ -19,7 +19,7 @@ public class CreateProductPayload {
         return name;
     }
 
-    public CreateProductPayload setName(String name) {
+    public CreateOrUpdateProductPayload setName(String name) {
         this.name = name;
         return this;
     }

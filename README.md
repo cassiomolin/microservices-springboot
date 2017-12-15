@@ -104,7 +104,7 @@ curl -X POST \
   'http://localhost:8765/api/products' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Avocado"
+  "name": "Cake"
 }'
 ```
 
@@ -114,6 +114,17 @@ curl -X POST \
 curl -X GET \
   'http://localhost:8765/api/products/{product-id}' \
   -H 'Accept: application/json'
+```
+
+### Update a product
+
+```bash
+curl -X POST \
+  'http://localhost:8765/api/products/{product-id}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Chocolate cake"
+}'
 ```
 
 ### Delete a product by id
@@ -138,7 +149,7 @@ curl -X POST \
   'http://localhost:8765/api/shopping-lists' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Birthday party",
+  "name": "My shopping list",
   "items": [
     {
       "id": "{product-id}"

@@ -23,8 +23,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    @Qualifier(ProductDeletedOutput.PRODUCT_DELETED_OUTPUT)
-    private MessageChannel messageChannel;
+    @Qualifier(ProductOutputChannel.PRODUCT_DELETED_OUTPUT)
+    private MessageChannel productDeletedMessageChannel;
+
+    @Autowired
+    @Qualifier(ProductOutputChannel.PRODUCT_UPDATED_OUTPUT)
+    private MessageChannel productUpdatedMessageChannel;
 
     public List<Product> getProducts() {
         return productRepository.findAll();
@@ -33,6 +37,11 @@ public class ProductService {
     public String createProduct(Product product) {
         product = productRepository.save(product);
         return product.getId();
+    }
+
+    public void updateProduct(Product product) {
+        product = productRepository.save(product);
+        productUpdatedMessageChannel.send(MessageBuilder.withPayload(product).build());
     }
 
     public Product getProduct(String id) {
@@ -49,7 +58,7 @@ public class ProductService {
             throw new NotFoundException();
         } else {
             productRepository.delete(id);
-            messageChannel.send(MessageBuilder.withPayload(product).build());
+            productDeletedMessageChannel.send(MessageBuilder.withPayload(product).build());
         }
     }
 }

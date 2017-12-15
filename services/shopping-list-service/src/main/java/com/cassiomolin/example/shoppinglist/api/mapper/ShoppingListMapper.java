@@ -14,9 +14,9 @@ import org.mapstruct.MappingTarget;
 @Mapper
 public interface ShoppingListMapper {
 
-    ShoppingList toShoppingList(CreateOrUpdateShoppingListPayload shoppingListPayload);
+    ShoppingList toShoppingList(CreateOrUpdateShoppingListPayload payload);
 
     QueryShoppingListResult toQueryShoppingListResult(ShoppingList shoppingList);
 
-    void updateShoppingList(CreateOrUpdateShoppingListPayload shoppingListPayload, @MappingTarget ShoppingList shoppingList);
+    void updateShoppingList(CreateOrUpdateShoppingListPayload payload, @MappingTarget ShoppingList shoppingList);
 }

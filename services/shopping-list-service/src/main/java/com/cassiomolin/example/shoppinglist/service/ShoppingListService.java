@@ -5,7 +5,10 @@ import com.cassiomolin.example.shoppinglist.domain.Product;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
 
@@ -78,9 +81,15 @@ public class ShoppingListService {
         });
     }
 
-    @CacheEvict(cacheNames = "secondary", key = "#product.id")
-    @StreamListener(ProductDeletedInput.PRODUCT_DELETED_INPUT)
+    @CacheEvict(cacheNames = "products", key = "#product.id")
+    @StreamListener(ProductInputChannel.PRODUCT_DELETED_INPUT)
     public void handleDeletedProduct(Product product) {
         shoppingListRepository.deleteProductsById(product.getId());
+    }
+
+    @CacheEvict(cacheNames = "products", key = "#product.id")
+    @StreamListener(ProductInputChannel.PRODUCT_UPDATED_INPUT)
+    public void handleUpdatedProduct(Product product) {
+        // Simply evict entry from the cache
     }
 }
