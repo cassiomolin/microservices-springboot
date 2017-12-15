@@ -5,10 +5,7 @@ import com.cassiomolin.example.shoppinglist.domain.Product;
 import com.cassiomolin.example.shoppinglist.domain.ShoppingList;
 import com.cassiomolin.example.shoppinglist.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
 
