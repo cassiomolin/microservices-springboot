@@ -35,7 +35,7 @@ public class ProductResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProducts(@Context HttpHeaders headers) {
+    public Response getProducts() {
         List<Product> products = productService.getProducts();
         List<QueryProductResult> queryResults = products.stream().map(productMapper::toQueryProductResult).collect(Collectors.toList());
         return Response.ok(queryResults).build();
