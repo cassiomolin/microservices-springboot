@@ -119,7 +119,7 @@ curl -X GET \
 ### Update a product
 
 ```bash
-curl -X POST \
+curl -X PUT \
   'http://localhost:8765/api/products/{product-id}' \
   -H 'Content-Type: application/json' \
   -d '{
